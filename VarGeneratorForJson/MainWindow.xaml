@@ -1,20 +1,109 @@
 ﻿<Window x:Class="VarGeneratorForJson.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="39*"/>
-            <RowDefinition Height="41*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <TextBox Name="orig" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" />
-        <TextBox Name="temp" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True"/>
-        <TextBox Name="result" Grid.Row="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" />
-        <Button Name="bt" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="bt_Click"/>
+        Title="MainWindow" Height="600" Width="800">
+    <Grid Background="LightGray">
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Padding" Value="4"/>
+            </Style>
+        </Grid.Resources>        
+        <TabControl Name="tabControl">            
+            <TabItem Header="JSONObject struct">                    
+                
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBox x:Name="tb_JSONObjectStruct" TextWrapping="Wrap"  AcceptsReturn="True"   Grid.Row="1" />
+                    <TextBox x:Name="tb_exclusionVars" TextWrapping="Wrap"  AcceptsReturn="True"  Grid.Row="1" Grid.Column="2"/>
+                    <TextBlock  Text="struct description"/>
+                    <TextBlock  Text="int vars list (default is string)" Grid.Column="2"/>
+                    <GridSplitter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"/>
+                    </Grid>
+                
+            </TabItem>
+            <TabItem Header="Json Class" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="tb_jvars" TextWrapping="Wrap"  AcceptsReturn="True"   Grid.Row="1" />
+                    <TextBox x:Name="tb_jparse" TextWrapping="Wrap"  AcceptsReturn="True"  Grid.Row="1" Grid.Column="2"/>
+                    <TextBlock  Text="json variables"/>
+                    <TextBlock  Text="json parse code" Grid.Column="2"/>
+                    <GridSplitter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Table Class">
+                <Grid >
+                    <Grid.RowDefinitions>                        
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2"/>                        
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>                    
+                    <Grid Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1*"/>                            
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <GridSplitter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"/>
+                        <TextBlock  Text="table vars declaration"/>
+                        <TextBlock  Text="column add code" Grid.Column="3"/>
+                        <TextBox x:Name="tb_tvars" TextWrapping="Wrap"  AcceptsReturn="True"   Grid.Row="1" />
+                        <TextBox x:Name="tb_tcolumns" TextWrapping="Wrap"  AcceptsReturn="True"  Grid.Row="1" Grid.Column="2"/>
+                    </Grid>
+                    <GridSplitter Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Stretch"/>
+                    <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <GridSplitter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"/>
+                        <TextBlock  Text="get model from db code" />
+                        <TextBlock  Text="insert model code" Grid.Column="2"/>
+                        <TextBox x:Name="tb_tmodel_create" TextWrapping="Wrap"  AcceptsReturn="True"   Grid.Row="2" />
+                        <TextBox x:Name="tb_tmodel_insert" TextWrapping="Wrap"  AcceptsReturn="True"  Grid.Row="2" Grid.Column="2"/>
+                    </Grid>
+                    
+                    
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Table Class code">
+                <Grid>
+                    <TextBox Name="tb_table_code"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,0,0,0" >
+            <TextBlock Text="Table name (ex. Servers)" VerticalAlignment="Center" Margin="0"/>
+            <TextBox x:Name="tb_jtableName"  VerticalAlignment="Center" Margin="8,0" MinWidth="100" />
+            <Button x:Name="bt" Content="generate" VerticalAlignment="Center" MinWidth="80" Click="bt_Click"/>
+        </StackPanel>
 
     </Grid>
 </Window>
