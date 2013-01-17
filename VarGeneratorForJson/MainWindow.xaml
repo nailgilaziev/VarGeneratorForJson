@@ -31,22 +31,45 @@
                 
             </TabItem>
             <TabItem Header="Json Class" >
-                <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="tb_jvars" TextWrapping="Wrap"  AcceptsReturn="True"   Grid.Row="1" />
-                    <TextBox x:Name="tb_jparse" TextWrapping="Wrap"  AcceptsReturn="True"  Grid.Row="1" Grid.Column="2"/>
-                    <TextBlock  Text="json variables"/>
-                    <TextBlock  Text="json parse code" Grid.Column="2"/>
-                    <GridSplitter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"/>
-                </Grid>
+                <TabControl>
+                    <TabItem Header="Receivable">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="tb_jvars" TextWrapping="Wrap"  AcceptsReturn="True"   Grid.Row="1" />
+                            <TextBox x:Name="tb_jparse" TextWrapping="Wrap"  AcceptsReturn="True"  Grid.Row="1" Grid.Column="2"/>
+                            <TextBlock  Text="json variables"/>
+                            <TextBlock  Text="json parse code" Grid.Column="2"/>
+                            <GridSplitter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Transmittable">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="tb_jt_stringer_array" TextWrapping="Wrap"  AcceptsReturn="True"   Grid.Row="1" />
+                            <TextBox x:Name="tb_jt_stringer" TextWrapping="Wrap"  AcceptsReturn="True"  Grid.Row="1" Grid.Column="2"/>
+                            <TextBlock  Text="json transmittable JSONStringer array code)"/>
+                            <TextBlock  Text="json transmittable JSONStringer code" Grid.Column="2"/>
+                            <GridSplitter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+               
             </TabItem>
             <TabItem Header="Table Class">
                 <Grid >

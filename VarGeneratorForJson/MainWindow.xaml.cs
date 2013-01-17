@@ -56,9 +56,8 @@ num
                 }
                 if (tabControl.SelectedIndex == 0)
                     tabControl.SelectedIndex = 1;
-
-
-
+                tb_jt_stringer.Text = getJSONStringerCode(vars, javaVars);
+                tb_jt_stringer_array.Text = getJSONStringerArrayCode(vars, javaVars);
             }
             catch (Exception ex)
             {
@@ -268,6 +267,50 @@ return id;
             + getOtherCode(tableName)
             + "}";
             return code;
+        }
+
+        string getJSONStringerCode(List<string> vars, List<string> javaVars)
+        {
+            String code = @"
+	@Override
+	public JSONStringer getJSONStringer() throws JSONException {{
+		return new JSONStringer()
+		.object() 
+		.key(""action"").value(""put"")
+        {0}.endObject();
+    }}";
+            String t = "";
+            for (int i = 0; i < vars.Count; i++)
+            {
+                t += String.Format(".key(\"{0}\").value({1})\n", vars[i], javaVars[i]);
+            }
+            return String.Format(code, t);
+
+        }
+
+        string getJSONStringerArrayCode(List<string> vars, List<string> javaVars)
+        {
+            String code = @"
+	@Override
+	public JSONStringer getJSONStringer() throws JSONException {{
+		JSONStringer js=new JSONStringer()
+		.object() 
+		.key(""action"").value(""put"");
+        {0}
+        js.endObject();
+    }}";
+            String t = "";
+            for (int i = 0; i < vars.Count; i++)
+            {
+                t += String.Format(
+@"js.key(""{0}"").array();
+for (int i=0;i<{1};i++) {{
+    js.value({1}[i]);
+}}
+            jsonStringer.endArray();value({1})", vars[i], javaVars[i]);
+            }
+            return String.Format(code, t);
+
         }
 
         string listToString(List<string> list)
