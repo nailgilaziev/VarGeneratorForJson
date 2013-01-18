@@ -303,11 +303,11 @@ return id;
             for (int i = 0; i < vars.Count; i++)
             {
                 t += String.Format(
-@"js.key(""{0}"").array();
-for (int i=0;i<{1};i++) {{
+@"
+js.key(""{0}"").array();
+for (int i=0;i<{1}.length;i++)
     js.value({1}[i]);
-}}
-            jsonStringer.endArray();value({1})", vars[i], javaVars[i]);
+js.endArray();", vars[i], javaVars[i]);
             }
             return String.Format(code, t);
 
