@@ -304,10 +304,12 @@ return id;
             {
                 t += String.Format(
 @"
-js.key(""{0}"").array();
-for (int i=0;i<{1}.length;i++)
-    js.value({1}[i]);
-js.endArray();", vars[i], javaVars[i]);
+if({1}!=null){{
+    js.key(""{0}"").array();
+    for (int i=0;i<{1}.length;i++)
+        js.value({1}[i]);
+    js.endArray();
+}}", vars[i], javaVars[i]);
             }
             return String.Format(code, t);
 
